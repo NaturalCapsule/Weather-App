@@ -1,13 +1,12 @@
 Install Modules: `pip install -r requirements.txt`
 
 1-install geocoder:
-bash
-`
+```bash
 pip install geocoder
-`
+```
 
 2-install httpx:
-bash
-`
+```bash
+
 pip install httpx
-`
+```
