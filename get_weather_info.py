@@ -1,6 +1,6 @@
 import geocoder
 import httpx
-from PyQt6.QtGui import QPixmap
+# from PyQt6.QtGui import QPixmap
 from io import BytesIO
 
 class WeatherInfo:
