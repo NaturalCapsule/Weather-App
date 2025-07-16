@@ -1,2 +1,5 @@
 geocoder
 httpx
+PyQt6
+PyQt6-tools
+pyqt6-fluent-widgets
