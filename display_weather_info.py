@@ -25,17 +25,18 @@ class Ui_MainWindow(object):
 
         # Set weather text
         self.display_condition = str(data['current_condition'][0]['weatherDesc'][0]['value'])
-        self.display_temp = int(data['current_condition'][0]['temp_C'])
+        self.display_temp = str(data['current_condition'][0]['temp_C'])
         self.display_time = str(data['weather'][0]['hourly'][2]['time'])
 
-        if self.display_temp <= 20:
+        if self.display_temp <= "20":
             self.label.setPixmap(QPixmap(u"assets/cold.png"))
-        elif self.display_temp > 20 and self.display_temp <= 30:
+        elif self.display_temp > "20" and self.display_temp <= "30":
             self.label.setPixmap(QPixmap(u"assets/warm.png"))
         else:
             self.label.setPixmap(QPixmap(u"assets/hot.png"))
 
-        self.lcdNumber.display(self.display_temp)
+        self.label_1.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.label_1.setText(self.display_temp + "°C")
         self.label_4.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_4.setText(self.display_condition)
         self.label_2.setText("Forecast Time")
@@ -133,19 +134,19 @@ class Ui_MainWindow(object):
         self.gridLayout_8.addItem(spacerItem10, 4, 2, 1, 1)
         spacerItem11 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.gridLayout_8.addItem(spacerItem11, 2, 0, 1, 1)
-        self.lcdNumber = QtWidgets.QLCDNumber(parent=self.frame_4)
-        self.lcdNumber.setStyleSheet("\n"
-"    QLCDNumber {\n"
-"        background-color: transparent;\n"
-"        color: purple;\n"
-
-"        font-size: 20px;\n"
-"        border-radius: 10px;\n"
-# "        font-color: black;\n"
-"    }\n"
-"")
-        self.lcdNumber.setObjectName("lcdNumber")
-        self.gridLayout_8.addWidget(self.lcdNumber, 3, 2, 1, 1)
+        self.label_1 = QtWidgets.QLabel(parent=self.frame_4)
+        self.label_1.setStyleSheet("""
+    QLabel {
+        color: black;
+        background-color: white;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: Arial;
+    }
+""")
+        self.gridLayout_8.addWidget(self.label_1, 3, 2, 1, 1)
         self.label = QtWidgets.QLabel(parent=self.frame_4)
         self.label.setEnabled(True)
         self.label.setMouseTracking(False)
