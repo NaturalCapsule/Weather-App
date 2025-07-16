@@ -29,11 +29,11 @@ class Ui_MainWindow(object):
         self.display_time = str(data['weather'][0]['hourly'][2]['time'])
 
         if self.display_temp <= 20:
-            self.label.setPixmap(QPixmap(u"Weather-App/assets/cold.png"))
+            self.label.setPixmap(QPixmap(u"assets/cold.png"))
         elif self.display_temp > 20 and self.display_temp <= 30:
-            self.label.setPixmap(QPixmap(u"Weather-App/assets/warm.png"))
+            self.label.setPixmap(QPixmap(u"assets/warm.png"))
         else:
-            self.label.setPixmap(QPixmap(u"Weather-App/assets/hot.png"))
+            self.label.setPixmap(QPixmap(u"assets/hot.png"))
 
         self.lcdNumber.display(self.display_temp)
         self.label_4.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -59,7 +59,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(650, 461)
-        self.icon_path = os.path.abspath("Weather-App/assets/weather-app.ico")
+        self.icon_path = os.path.abspath("assets/weather-app.ico")
         MainWindow.setWindowIcon(QIcon(self.icon_path))
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -136,11 +136,12 @@ class Ui_MainWindow(object):
         self.lcdNumber = QtWidgets.QLCDNumber(parent=self.frame_4)
         self.lcdNumber.setStyleSheet("\n"
 "    QLCDNumber {\n"
-"        background-color: #0a0f14;\n"
-"        color: #FF00FF;\n"
-"        border: 1px solid #ff0080;\n"
+"        background-color: transparent;\n"
+"        color: purple;\n"
+
+"        font-size: 20px;\n"
 "        border-radius: 10px;\n"
-"        padding: 5px;\n"
+# "        font-color: black;\n"
 "    }\n"
 "")
         self.lcdNumber.setObjectName("lcdNumber")
