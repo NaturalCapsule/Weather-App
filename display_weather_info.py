@@ -3,14 +3,21 @@ from qfluentwidgets import FluentWindow, PushButton
 import httpx
 import os
 from PyQt6.QtGui import QPixmap, QIcon
-from PyQt6.QtCore import Qt
+from time import strftime
+from PyQt6.QtCore import Qt, QTimer
 from io import BytesIO
 from get_weather_info import WeatherInfo
 
 
 class Ui_MainWindow(object):
 
+
+
     def on_pushButton_clicked(self):
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.update_time)
+        self.timer.start(1)
+
         weather_info = WeatherInfo()
         data, icon_url = weather_info.get_json_weather_data()
         # Set weather icon
@@ -39,7 +46,9 @@ class Ui_MainWindow(object):
         self.label_1.setText(self.display_temp + "°C")
         self.label_4.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_4.setText(self.display_condition)
-        self.label_2.setText("Forecast Time")
+        self.label_2.setText(" Time")
+
+        #label is the time!
         self.label_6.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_6.setText(self.format_weather_times(data)[2])
 
@@ -58,6 +67,11 @@ class Ui_MainWindow(object):
 
 
     def setupUi(self, MainWindow):
+
+        # self.timer = QTimer()
+        # self.timer.timeout.connect(self.update_time)
+        # self.timer.start(1)
+
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(650, 461)
         self.icon_path = os.path.abspath("assets/weather-app.ico")
@@ -87,6 +101,7 @@ class Ui_MainWindow(object):
         background-color: white;
         border-radius: 10px;
         padding: 10px;
+        padding-left: 13px;
         font-size: 18px;
         font-weight: bold;
         font-family: Arial;
@@ -252,6 +267,10 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def update_time(self):
+        self.label_6.setText(strftime('%H:%M:%S'))
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
