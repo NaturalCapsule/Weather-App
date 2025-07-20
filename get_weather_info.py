@@ -2,6 +2,7 @@ import geocoder
 import httpx
 # from PyQt6.QtGui import QPixmap
 from io import BytesIO
+from datetime import datetime
 
 class WeatherInfo:
     def __init__(self):
@@ -42,7 +43,12 @@ class WeatherInfo:
         data = self.get_json_weather_data()
 
         sunset = data['weather'][0]['astronomy'][0]['sunset']
-        return sunset
+        print(sunset)
+
+        sunset_time = datetime.strptime(sunset, "%I:%M %p")
+        print(sunset_time)
+
+        return sunset_time.hour
 
     def get_moonset(self):
         data = self.get_json_weather_data()
